@@ -1,0 +1,43 @@
+
+   ErrorException  : file_put_contents(C:\Users\KIET\laravel\demo\app/Http/Controllers/Route::get('them-moi','CauHoiController@create')-;.php): failed to open stream: No such file or directory
+
+  at C:\Users\KIET\laravel\demo\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php:122
+    118|      * @return int|bool
+    119|      */
+    120|     public function put($path, $contents, $lock = false)
+    121|     {
+  > 122|         return file_put_contents($path, $contents, $lock ? LOCK_EX : 0);
+    123|     }
+    124| 
+    125|     /**
+    126|      * Write the contents of a file, replacing it atomically if it already exists.
+
+  Exception trace:
+
+  1   file_put_contents("C:\Users\KIET\laravel\demo\app/Http/Controllers/Route::get('them-moi','CauHoiController@create')-;.php", "<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class Route::get('them-moi','CauHoiController@create')-; extends Controller
+{
+    //
+}
+")
+      C:\Users\KIET\laravel\demo\vendor\laravel\framework\src\Illuminate\Filesystem\Filesystem.php:122
+
+  2   Illuminate\Filesystem\Filesystem::put("C:\Users\KIET\laravel\demo\app/Http/Controllers/Route::get('them-moi','CauHoiController@create')-;.php", "<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class Route::get('them-moi','CauHoiController@create')-; extends Controller
+{
+    //
+}
+")
+      C:\Users\KIET\laravel\demo\vendor\laravel\framework\src\Illuminate\Console\GeneratorCommand.php:73
+
+  Please use the argument -v to see more details.
