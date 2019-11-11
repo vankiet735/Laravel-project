@@ -27,6 +27,7 @@ Route::prefix('linh-vuc')->group(function(){
 	Route::get('xoa/{id}','LinhVucController@destroy')->name('linh-vuc.xoa');
 	Route::get('dstrash','LinhVucController@get_trash')->name('linh-vuc.dstrash');
 	Route::get('restore/{id}','LinhVucController@restore_linhvuc')->name('linh-vuc.restore');
+	Route::get('delete-trash/{id}','LinhVucController@delete_trash')->name('linh-vuc.delete-trash');
 });
 
 Route::prefix('cau-hoi')->group(function(){
@@ -35,4 +36,8 @@ Route::prefix('cau-hoi')->group(function(){
 	Route::post('them-moi','CauHoiController@store')->name('cau-hoi.xl-them-moi');
 	Route::get('cap-nhat/{id}','CauHoiController@edit')->name('cau-hoi.cap-nhat');
 	Route::post('cap-nhat/{id}','CauHoiController@update')->name('cau-hoi.xu-ly-cap-nhat');
+	Route::get('xoa/{id}','CauHoiController@destroy')->name('cau-hoi.xoa');
+	Route::get('dstrash','CauHoiController@get_trash')->name('cau-hoi.dstrash');
+	Route::get('restore/{id}','CauHoiController@restore_cauhoi')->name('cau-hoi.restore');
+	Route::get('delete-trash/{id}','CauHoiController@delete_trash')->name('cau-hoi.delete-trash');
 });

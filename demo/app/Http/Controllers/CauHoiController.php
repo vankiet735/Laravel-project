@@ -102,6 +102,37 @@ class CauHoiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $cauHoi=CauHoi::find($id);
+        $cauHoi->delete();
+         return redirect()->route('cau-hoi.danh-sach');      
+    }
+
+
+       public function get_trash()
+    {      
+        $linhVuc=LinhVuc::all();
+        $dsCauHoi=CauHoi::onlyTrashed()->get();
+        return view('ds-cau-hoi-trash',compact('dsCauHoi','linhVuc'));  
+    }
+
+    public function restore_cauhoi($id)
+    {      
+        $dsCauHoi=CauHoi::all();
+         $cauHoi=CauHoi::onlyTrashed()->get()->find($id);
+        $cauHoi->restore();
+         return redirect()->route('cau-hoi.danh-sach',compact('dsCauHoi'));
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete_trash($id)
+    {      
+         $cauHoi=CauHoi::onlyTrashed()->get()->find($id);
+         $cauHoi->forceDelete();
+         return redirect()->route('cau-hoi.dstrash');
     }
 }

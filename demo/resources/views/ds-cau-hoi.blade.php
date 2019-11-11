@@ -49,6 +49,8 @@
                             <div class="card-body">
                                 <h4 class="header-title">Danh sách câu hỏi</h4>
                                 <a href="{{Route('cau-hoi.them-moi')}}" type="button" class="btn btn-primary btn-rounded waves-effect waves-light">Thêm mới</a>
+                                <a href="{{route('cau-hoi.dstrash')}}" type="button" class="btn btn-primary btn-rounded waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
+                                
                                 <p></p>
                                
                                 <table id="table-cau-hoi" class="table dt-responsive " >
@@ -80,7 +82,7 @@
                                             <td>{{ $cauHoi->dap_an}}</td>   
                                             <td>
                                                 <a href="{{route('cau-hoi.cap-nhat',['id'=>$cauHoi->id])}}" class="btn btn-success waves-effect waves-light"><i class=" mdi mdi-wrench"></i></a>
-                                                <a href="#" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a></td>   
+                                                <a href="{{Route('cau-hoi.xoa',['id'=>$cauHoi->id])}}" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a></td>   
                                         </tr>
                                         @endforeach
                                     </tbody>

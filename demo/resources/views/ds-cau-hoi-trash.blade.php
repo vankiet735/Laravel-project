@@ -43,35 +43,48 @@
 <link href="{{asset('assets/libs/datatables/select.bootstrap4.css')}}"rel="stylesheet" type="text/css" />
 <!-- third party css end -->
 @endsection
-
+@section('title')
+Danh sách câu hỏi đã bị xóa
+@endsection
 @section('main-content')
 
 <div class="row">
 	<div class="col-12">
 		<div class="card">
 			<div class="card-body">
-				<h4 class="header-title">Danh sách lĩnh vực đã xóa</h4>
+				<h4 class="header-title">  </h4>
 				 
 
-				<table id="linh-vuc-datatable" class="table dt-responsive nowrap">
+				<table id="linh-vuc-datatable" class="table dt-responsive ">
 					<thead>
 						<tr>
 							<th>ID</th>
-							<th>Tên lĩnh vực</th>
+							<th>Nội dung</th>
+							<th>Lĩnh Vực</th>
+							<th>Phương án A</th>
+							<th>Phương án B</th>
+							<th>Phương án C</th>
+							<th>Phương án D</th>
+							<th>Đáp án</th>
 							<th></th>
-
 						</tr>
 					</thead>
 
 
 					<tbody>
-						@foreach($dsLinhVuc as $linhVuc )
+						@foreach($dsCauHoi as $cauhoi)
 						<tr>
-							<td>{{ $linhVuc->id }}</td>
-							<td>{{ $linhVuc->ten_linh_vuc }}</td>
+							<td>{{ $cauhoi->id }}</td>
+							<td>{{ $cauhoi->noi_dung }}</td>
+							 <td>{{ $cauhoi->linhVuc->ten_linh_vuc }}</td>
+                             <td>{{ $cauhoi->phuong_an_a }}</td>
+                             <td>{{ $cauhoi->phuong_an_b }}</td>
+                             <td>{{ $cauhoi->phuong_an_c }}</td>
+                             <td>{{ $cauhoi->phuong_an_d }}</td>
+                             <td>{{ $cauhoi->dap_an}}</td>   
 							<td>
-								<a href="{{route('linh-vuc.restore',['id'=>$linhVuc->id])}}" class="btn btn-success waves-effect waves-light"><i class="mdi mdi-replay"></i></a>
-								<a href="{{route('linh-vuc.delete-trash',['id'=>$linhVuc->id])}}" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
+								<a href="{{route('cau-hoi.restore',['id'=>$cauhoi->id])}}" class="btn btn-success waves-effect waves-light"><i class="mdi mdi-replay"></i></a>
+								<a href="{{route('cau-hoi.delete-trash',['id'=>$cauhoi->id])}}" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
 							</td>
 						</tr>
 						@endforeach

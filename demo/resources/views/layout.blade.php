@@ -374,7 +374,10 @@
                                     <i class="la la-cube"></i>Lĩnh Vực <div class="arrow-down"></div></a>
                                 <ul class="submenu">
                                     <li>
-                                        <a href="{{Route('linh-vuc.them-moi')}}">Thêm lĩnh vực</a>
+                                        <a href="{{Route('linh-vuc.them-moi')}}">Thêm Lĩnh Vực</a>
+                                    </li>
+                                     <li>
+                                        <a href="{{Route('linh-vuc.dstrash')}}">Lĩnh Vực Đã Xóa</a>
                                     </li>
                                     <li class="has-submenu">
                                         <a href="#">Email <div class="arrow-down"></div></a>
@@ -404,7 +407,7 @@
                                     </li>
                                    
                                     <li>
-                                        <a href="layouts-normal-header.html">Unsticky Header</a>
+                                        <a href="{{route('cau-hoi.dstrash')}}">Câu Hỏi Đã Xóa</a>
                                     </li>
                                     <li>
                                         <a href="layouts-boxed.html">Boxed</a>
@@ -707,7 +710,7 @@
                                     <li class="breadcrumb-item active">Starter</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Starter</h4>
+                            <h4 class="page-title">@yield('title')</h4>
                         </div>
                     </div>
                 </div>     

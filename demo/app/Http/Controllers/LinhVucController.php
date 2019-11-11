@@ -129,6 +129,19 @@ class LinhVucController extends Controller
         $linhVuc->restore();
          return redirect()->route('linh-vuc.danh-sach',compact('dsLinhVuc'));
     }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete_trash($id)
+    {      
+         $linhVuc=LinhVuc::onlyTrashed()->get()->find($id);
+         $linhVuc->forceDelete();
+         return redirect()->route('linh-vuc.dstrash');
+    }
+    
     
 
 }
