@@ -6,7 +6,7 @@
             <div class="card-body">
                 <h4 class="mb-3 header-title">@if(isset($linhVuc))Cập nhật @else Thêm @endif lĩnh vực</h4>
                 @if(isset($linhVuc))
-                 <form action="{{route('xu-ly-cap-nhat',['id'=>$linhVuc->id])}}" method="post">
+                 <form action="{{route('linh-vuc.xu-ly-cap-nhat',['id'=>$linhVuc->id])}}" method="post">
                 @else
                 <form action="{{route('linh-vuc.xl-them-moi')}}" method="post">
                 @endif

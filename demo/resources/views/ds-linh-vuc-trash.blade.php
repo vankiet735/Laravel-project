@@ -51,10 +51,7 @@
 		<div class="card">
 			<div class="card-body">
 				<h4 class="header-title">Danh sách lĩnh vực</h4>
-				 <a href=" {{route('linh-vuc.them-moi')}}" type="button" class="btn btn-primary btn-rounded waves-effect waves-light">Thêm mới</a>
-				 <a href="{{route('linh-vuc.dstrash')}}" type="button" class="btn btn-primary btn-rounded waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
-				<p class="text-muted font-13 mb-4">
-				</p>
+				 
 
 				<table id="linh-vuc-datatable" class="table dt-responsive nowrap">
 					<thead>
@@ -73,8 +70,8 @@
 							<td>{{ $linhVuc->id }}</td>
 							<td>{{ $linhVuc->ten_linh_vuc }}</td>
 							<td>
-								<a href="{{route('linh-vuc.cap-nhat',['id'=>$linhVuc->id])}}" class="btn btn-success waves-effect waves-light"><i class=" mdi mdi-wrench"></i></a>
-								<a href="{{route('linh-vuc.xoa',['id'=>$linhVuc->id])}}" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
+								<a href="{{route('linh-vuc.restore',['id'=>$linhVuc->id])}}" class="btn btn-success waves-effect waves-light"><i class="mdi mdi-replay"></i></a>
+								<a href="#" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
 							</td>
 						</tr>
 						@endforeach

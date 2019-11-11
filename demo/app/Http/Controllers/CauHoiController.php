@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\CauHoi;
 use App\LinhVuc;
+use Illuminate\Http\RedirectResponse;
 class CauHoiController extends Controller
 {
     /**
@@ -69,7 +70,9 @@ class CauHoiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dsLinhVuc=LinhVuc::all();
+        $cauHoi=CauHoi::find($id);
+       return view('form-cau-hoi',compact('dsLinhVuc','cauHoi'));
     }
 
     /**
@@ -81,7 +84,14 @@ class CauHoiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cauHoi=CauHoi::find($id);
+         $cauHoi->noi_dung=$request->noi_dung;
+         $cauHoi->phuong_an_a=$request->phuong_an_a;
+         $cauHoi->phuong_an_b=$request->phuong_an_b;
+         $cauHoi->phuong_an_c=$request->phuong_an_c;
+         $cauHoi->phuong_an_d=$request->phuong_an_d;
+         $cauHoi->save();
+        return redirect()->route('cau-hoi.danh-sach');
     }
 
     /**

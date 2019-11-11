@@ -48,12 +48,14 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="header-title">Danh sách câu hỏi</h4>
+                                <a href="{{Route('cau-hoi.them-moi')}}" type="button" class="btn btn-primary btn-rounded waves-effect waves-light">Thêm mới</a>
+                                <p></p>
                                
-                                <table id="table-cau-hoi" class="table dt-responsive nowrap" >
+                                <table id="table-cau-hoi" class="table dt-responsive " >
                                     <thead>
-                                        <tr style="display: inline-block;">
-                                            <th style="display: inline-block;">ID</th>
-                                            <th style="display: block;" >Nội dung</th>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nội dung</th>
                                             <th>Lĩnh Vực</th>
                                             <th>Phương án A</th>
                                             <th>Phương án B</th>
@@ -69,26 +71,22 @@
                                          @foreach($dsCauHoi as $cauHoi)
                                         <tr >
                                             <td>{{ $cauHoi->id }}</td>
-                                            <td class="a">{{ $cauHoi->noi_dung }}</td>
-                                            <td class="a" >{{ $cauHoi->linhVuc->ten_linh_vuc }}</td>
-                                            <td >{{ $cauHoi->phuong_an_a }}</td>
+                                            <td>{{ $cauHoi->noi_dung }}</td>
+                                            <td>{{ $cauHoi->linhVuc->ten_linh_vuc }}</td>
+                                            <td>{{ $cauHoi->phuong_an_a }}</td>
                                             <td>{{ $cauHoi->phuong_an_b }}</td>
                                             <td>{{ $cauHoi->phuong_an_c }}</td>
                                             <td>{{ $cauHoi->phuong_an_d }}</td>
                                             <td>{{ $cauHoi->dap_an}}</td>   
-                                            <td>Sửa ---- Xóa</td>   
+                                            <td>
+                                                <a href="{{route('cau-hoi.cap-nhat',['id'=>$cauHoi->id])}}" class="btn btn-success waves-effect waves-light"><i class=" mdi mdi-wrench"></i></a>
+                                                <a href="#" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a></td>   
                                         </tr>
                                         @endforeach
                                     </tbody>
                                    
                                 </table>
-                                <style type="text/css">
-                                    .a{
-                                        display: inline-block;
-                            
-                                    }
-                                    
-                                </style>
+                                
                             </div> 
                         </div> 
                     </div>
