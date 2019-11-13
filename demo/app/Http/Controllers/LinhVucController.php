@@ -26,8 +26,8 @@ class LinhVucController extends Controller
      */
     public function create()
     {
-         return view('form-linh-vuc');
-    }
+       return view('form-linh-vuc');
+   }
 
     /**
      * Store a newly created resource in storage.
@@ -37,14 +37,14 @@ class LinhVucController extends Controller
      */
     public function store(Request $request)
     {
-       $linhVuc=new LinhVuc;
-       $linhVuc->ten_linh_vuc=$request->ten_linh_vuc;
-       $linhVuc->save();
-        echo  '<script>'."alert('Thêm lĩnh vực thành công')".'</script>';
+     $linhVuc=new LinhVuc;
+     $linhVuc->ten_linh_vuc=$request->ten_linh_vuc;
+     $linhVuc->save();
+     echo  '<script>'."alert('Thêm lĩnh vực thành công')".'</script>';
         // return redirect()->route('linh-vuc/them-moi');
-        return redirect()->route('linh-vuc.danh-sach');
+     return redirect()->route('linh-vuc.danh-sach');
 
-    }
+ }
 
     /**
      * Display the specified resource.
@@ -79,11 +79,11 @@ class LinhVucController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $linhVuc=LinhVuc::find($id);
-         $linhVuc->ten_linh_vuc=$request->ten_linh_vuc;
-         $linhVuc->save();
-        return redirect()->route('linh-vuc.danh-sach');
-    }
+       $linhVuc=LinhVuc::find($id);
+       $linhVuc->ten_linh_vuc=$request->ten_linh_vuc;
+       $linhVuc->save();
+       return redirect()->route('linh-vuc.danh-sach');
+   }
 
     /**
      * Remove the specified resource from storage.
@@ -97,22 +97,22 @@ class LinhVucController extends Controller
         $linhVuc=LinhVuc::find($id);
         foreach ($cauHoi as $cauhoi) {
             if(($cauhoi->linh_vuc_id)==($linhVuc->id))
-                 return  '<script>'."alert('Không thể xóa')".'</script>';
-            else
-             {
-                  $linhVuc->delete();
-                  return redirect()->route('linh-vuc.danh-sach');
-             }
-         }
-    }
+               return  '<script>'."alert('Không thể xóa')".'</script>';
+           else
+           {
+              $linhVuc->delete();
+              return redirect()->route('linh-vuc.danh-sach');
+          }
+      }
+  }
      /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function get_trash()
-    {      
+     public function get_trash()
+     {      
         $dsLinhVuc=LinhVuc::onlyTrashed()->get();
         return view('ds-linh-vuc-trash',compact('dsLinhVuc'));  
     }
@@ -122,12 +122,12 @@ class LinhVucController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function restore_linhvuc($id)
-    {      
+     public function restore_linhvuc($id)
+     {      
         $dsLinhVuc=LinhVuc::all();
-         $linhVuc=LinhVuc::onlyTrashed()->get()->find($id);
+        $linhVuc=LinhVuc::onlyTrashed()->get()->find($id);
         $linhVuc->restore();
-         return redirect()->route('linh-vuc.danh-sach',compact('dsLinhVuc'));
+        return redirect()->route('linh-vuc.danh-sach',compact('dsLinhVuc'));
     }
     /**
      * Remove the specified resource from storage.
@@ -137,11 +137,11 @@ class LinhVucController extends Controller
      */
     public function delete_trash($id)
     {      
-         $linhVuc=LinhVuc::onlyTrashed()->get()->find($id);
-         $linhVuc->forceDelete();
-         return redirect()->route('linh-vuc.dstrash');
-    }
-    
-    
-
+       $linhVuc=LinhVuc::onlyTrashed()->get()->find($id);
+       $linhVuc->forceDelete();
+       if(count(LinhVuc::onlyTrashed()->get())==0)
+         return redirect()->route('linh-vuc.danh-sach');
+        else
+           return redirect()->route('linh-vuc.dstrash');
+   }
 }

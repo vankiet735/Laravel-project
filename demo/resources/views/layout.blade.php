@@ -416,7 +416,7 @@
                             </li>
 
                             <li class="has-submenu">
-                                <a href="#"> <i class="la la-briefcase"></i>Người Chơi <div class="arrow-down"></div></a>
+                                <a href="{{route('nguoi-choi.danh-sach')}}"> <i class="la la-briefcase"></i>Người Chơi <div class="arrow-down"></div></a>
                                 <ul class="submenu megamenu">
                                     <li>
                                         <ul>

@@ -41,3 +41,13 @@ Route::prefix('cau-hoi')->group(function(){
 	Route::get('restore/{id}','CauHoiController@restore_cauhoi')->name('cau-hoi.restore');
 	Route::get('delete-trash/{id}','CauHoiController@delete_trash')->name('cau-hoi.delete-trash');
 });
+
+Route::prefix('nguoi-choi')->group(function(){
+	Route::get('/','NguoiChoiController@index')->name('nguoi-choi.danh-sach');
+	Route::get('them-moi','NguoiChoiController@create')->name('nguoi-choi.them-moi');
+	Route::post('them-moi','NguoiChoiController@store')->name('nguoi-choi.xl-them-moi');
+	Route::get('xoa/{id}','NguoiChoiController@destroy')->name('nguoi-choi.xoa');
+	Route::get('dstrash','NguoiChoiController@get_trash')->name('nguoi-choi.dstrash');
+	Route::get('restore/{id}','NguoiChoiController@restore_nguoichoi')->name('nguoi-choi.restore');
+	Route::get('delete-trash/{id}','NguoiChoiController@delete_trash')->name('nguoi-choi.delete-trash');
+});

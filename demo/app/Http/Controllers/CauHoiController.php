@@ -16,7 +16,7 @@ class CauHoiController extends Controller
     public function index()
     {
         $dsCauHoi=CauHoi::all();
-       return view('ds-cau-hoi',compact('dsCauHoi'));
+        return view('ds-cau-hoi',compact('dsCauHoi'));
     }
 
     /**
@@ -72,7 +72,7 @@ class CauHoiController extends Controller
     {
         $dsLinhVuc=LinhVuc::all();
         $cauHoi=CauHoi::find($id);
-       return view('form-cau-hoi',compact('dsLinhVuc','cauHoi'));
+        return view('form-cau-hoi',compact('dsLinhVuc','cauHoi'));
     }
 
     /**
@@ -85,12 +85,12 @@ class CauHoiController extends Controller
     public function update(Request $request, $id)
     {
         $cauHoi=CauHoi::find($id);
-         $cauHoi->noi_dung=$request->noi_dung;
-         $cauHoi->phuong_an_a=$request->phuong_an_a;
-         $cauHoi->phuong_an_b=$request->phuong_an_b;
-         $cauHoi->phuong_an_c=$request->phuong_an_c;
-         $cauHoi->phuong_an_d=$request->phuong_an_d;
-         $cauHoi->save();
+        $cauHoi->noi_dung=$request->noi_dung;
+        $cauHoi->phuong_an_a=$request->phuong_an_a;
+        $cauHoi->phuong_an_b=$request->phuong_an_b;
+        $cauHoi->phuong_an_c=$request->phuong_an_c;
+        $cauHoi->phuong_an_d=$request->phuong_an_d;
+        $cauHoi->save();
         return redirect()->route('cau-hoi.danh-sach');
     }
 
@@ -102,14 +102,13 @@ class CauHoiController extends Controller
      */
     public function destroy($id)
     {
-        
         $cauHoi=CauHoi::find($id);
         $cauHoi->delete();
-         return redirect()->route('cau-hoi.danh-sach');      
+        return redirect()->route('cau-hoi.danh-sach');      
     }
 
 
-       public function get_trash()
+    public function get_trash()
     {      
         $linhVuc=LinhVuc::all();
         $dsCauHoi=CauHoi::onlyTrashed()->get();
@@ -119,9 +118,9 @@ class CauHoiController extends Controller
     public function restore_cauhoi($id)
     {      
         $dsCauHoi=CauHoi::all();
-         $cauHoi=CauHoi::onlyTrashed()->get()->find($id);
+        $cauHoi=CauHoi::onlyTrashed()->get()->find($id);
         $cauHoi->restore();
-         return redirect()->route('cau-hoi.danh-sach',compact('dsCauHoi'));
+        return redirect()->route('cau-hoi.danh-sach',compact('dsCauHoi'));
     }
     /**
      * Remove the specified resource from storage.
@@ -131,8 +130,10 @@ class CauHoiController extends Controller
      */
     public function delete_trash($id)
     {      
-         $cauHoi=CauHoi::onlyTrashed()->get()->find($id);
-         $cauHoi->forceDelete();
-         return redirect()->route('cau-hoi.dstrash');
-    }
+       $cauHoi=CauHoi::onlyTrashed()->get()->find($id);
+       $cauHoi->forceDelete();
+       if(count(CauHoi::onlyTrashed()->get())==0)
+        return redirect()->route('cau-hoi.danh-sach');
+       return redirect()->route('cau-hoi.dstrash');
+   }
 }
