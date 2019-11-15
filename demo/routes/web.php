@@ -51,3 +51,13 @@ Route::prefix('nguoi-choi')->group(function(){
 	Route::get('restore/{id}','NguoiChoiController@restore_nguoichoi')->name('nguoi-choi.restore');
 	Route::get('delete-trash/{id}','NguoiChoiController@delete_trash')->name('nguoi-choi.delete-trash');
 });
+Route::prefix('goi-credit')->group(function(){
+	Route::get('/','GoiCreditController@index')->name('goi-credit.danh-sach');
+	Route::post('/them-moi','GoiCreditController@store')->name('goi-credit.xl-them-moi');
+	Route::get('cap-nhat/{id}','GoiCreditController@edit')->name('goi-credit.cap-nhat');
+	Route::post('cap-nhat/{id}','GoiCreditController@update')->name('goi-credit.xl-cap-nhat');
+	Route::get('xoa/{id}','GoiCreditController@destroy')->name('goi-credit.xoa');
+	Route::get('dstrash','GoiCreditController@get_trash')->name('goi-credit.dstrash');
+	Route::get('restore/{id}','GoiCreditController@restore_goi_credit')->name('goi-credit.restore');
+	Route::get('delete-trash/{id}','GoiCreditController@delete_trash')->name('goi-credit.delete-trash');
+});

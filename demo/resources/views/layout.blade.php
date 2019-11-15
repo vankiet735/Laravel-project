@@ -458,7 +458,7 @@
                             </li>
 
                             <li class="has-submenu">
-                                <a href="#">
+                                <a href="{{Route('goi-credit.danh-sach')}}">
                                     <i class="la la-diamond"></i>Gói Credit <div class="arrow-down"></div></a>
                                 <ul class="submenu">
                                     <li class="has-submenu">
