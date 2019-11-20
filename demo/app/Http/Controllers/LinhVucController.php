@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\LinhVuc;
 use App\CauHoi;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\LinhVucRequest;
 class LinhVucController extends Controller
 {
     /**
@@ -35,12 +36,12 @@ class LinhVucController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LinhVucRequest $request)
     {
      $linhVuc=new LinhVuc;
      $linhVuc->ten_linh_vuc=$request->ten_linh_vuc;
      $linhVuc->save();
-     echo  '<script>'."alert('Thêm lĩnh vực thành công')".'</script>';
+     // echo  '<script>'."alert('Thêm lĩnh vực thành công')".'</script>';
         // return redirect()->route('linh-vuc/them-moi');
      return redirect()->route('linh-vuc.danh-sach');
 

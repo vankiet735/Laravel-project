@@ -12,11 +12,11 @@ class ThemLinhVucSeeder extends Seeder
     public function run()
     {
         LinhVuc::create(
-        	['ten_linh_vuc'=>'Âm nhạc']
+        	['ten_linh_vuc'=>'Thể thao']
         );
 
     LinhVuc::create(
-        	['ten_linh_vuc'=>'Thể thao']
+        	['ten_linh_vuc'=>'Âm nhạc']
         );
     LinhVuc::create(
         	['ten_linh_vuc'=>'Lịch sử']

@@ -11,4 +11,14 @@ class CauHoiController extends Controller
     	$danhSach=CauHoi::all();
     	return $danhSach;
     }
+    
+    public function LayCauHoi(Request $request){
+    	$linhVucID=$request->query('linh-vuc');
+        $cauHoi=CauHoi::where('linh_vuc_id',$linhVucID)->get()->random(1);
+        $result=[
+                'success'=>true,
+                'data'=>$cauHoi
+        ];
+        return response()->json($result);
+    }
 }

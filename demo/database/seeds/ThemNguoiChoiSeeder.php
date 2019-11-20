@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Nguoi_Choi;
+use App\NguoiChoi;
 use Illuminate\Support\Facades\Hash;
 class ThemNguoiChoiSeeder extends Seeder
 {
@@ -13,7 +13,7 @@ class ThemNguoiChoiSeeder extends Seeder
     public function run()
     {
     	for((int) $i=0;$i<200;$i++){
-    		Nguoi_Choi::create(
+    		NguoiChoi::create(
     			["ten_dang_nhap"=>"player".$i,
     			"mat_khau"=>Hash::make("123456"),
     			"email"=>"player".$i."@gmail.com",
