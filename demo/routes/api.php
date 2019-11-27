@@ -19,6 +19,8 @@ Route::get('cau-hoi','API\CauHoiController@LayCauHoi');
 Route::get('ds-linh-vuc','API\LinhVucController@LayDanhSach');
 Route::get('linh-vuc-random','API\LinhVucController@Random_4_LinhVuc');
 
+Route::get('nguoi-choi','API\NguoiChoiController@layDanhSach');
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

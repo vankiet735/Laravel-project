@@ -13,8 +13,7 @@ class LinhVucController extends Controller
     }
     
     public function Random_4_LinhVuc(){
-    	$dsLinhVuc=LinhVuc::all();
-    	$dsLinhVuc->random(4);
+    	$dsLinhVuc=LinhVuc::all()->random(4);
     	$result=['success'=>true,
     			 'linhVuc'=>$dsLinhVuc
     	];
