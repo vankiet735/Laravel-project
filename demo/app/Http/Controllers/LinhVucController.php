@@ -7,6 +7,7 @@ use App\LinhVuc;
 use App\CauHoi;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\LinhVucRequest;
+use Illuminate\Support\Facades\Auth;
 class LinhVucController extends Controller
 {
     /**
