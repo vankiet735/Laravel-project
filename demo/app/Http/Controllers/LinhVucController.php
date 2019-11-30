@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use App\LinhVuc;
 use App\CauHoi;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\LinhVucRequest;
 use Illuminate\Support\Facades\Auth;
+
 class LinhVucController extends Controller
 {
     /**
@@ -44,6 +45,7 @@ class LinhVucController extends Controller
      $linhVuc->save();
      // echo  '<script>'."alert('Thêm lĩnh vực thành công')".'</script>';
         // return redirect()->route('linh-vuc/them-moi');
+      toast()->success('Thêm lĩnh vực thành công !!'); 
      return redirect()->route('linh-vuc.danh-sach');
 
  }
@@ -84,6 +86,7 @@ class LinhVucController extends Controller
        $linhVuc=LinhVuc::find($id);
        $linhVuc->ten_linh_vuc=$request->ten_linh_vuc;
        $linhVuc->save();
+       Toast()->success('Cập nhật thành công !!'); 
        return redirect()->route('linh-vuc.danh-sach');
    }
 
@@ -95,17 +98,25 @@ class LinhVucController extends Controller
      */
     public function destroy($id)
     {
+        $a=0;
         $cauHoi=CauHoi::all();
         $linhVuc=LinhVuc::find($id);
         foreach ($cauHoi as $cauhoi) {
-            if(($cauhoi->linh_vuc_id)==($linhVuc->id))
-               return  '<script>'."alert('Không thể xóa')".'</script>';
+            if(($cauhoi->linh_vuc_id)==($id))
+                $a++;
+        }
+       if($a!=0)
+            {
+               alert()->error('', 'Lĩnh vực còn tồn tại câu hỏi - Không thể xóa lĩnh vực này');
+               return redirect()->route('linh-vuc.danh-sach');
+            }
            else
            {
               $linhVuc->delete();
+             Toast()->success('Xóa thành công !!'); 
               return redirect()->route('linh-vuc.danh-sach');
-          }
-      }
+          }       
+      
   }
      /**
      * Remove the specified resource from storage.
@@ -126,10 +137,11 @@ class LinhVucController extends Controller
      */
      public function restore_linhvuc($id)
      {      
-        $dsLinhVuc=LinhVuc::all();
+        
         $linhVuc=LinhVuc::onlyTrashed()->get()->find($id);
         $linhVuc->restore();
-        return redirect()->route('linh-vuc.danh-sach',compact('dsLinhVuc'));
+        Toast()->success('Khôi phục thành công !!'); 
+        return redirect()->route('linh-vuc.dstrash');
     }
     /**
      * Remove the specified resource from storage.

@@ -11,9 +11,14 @@
         <!-- App favicon -->
         <link rel="shortcut icon" href="{{asset('assets/images/favicon.ico')}}">
 
+         <script src="{{asset('sweetalert2/sweetalert2.all.js')}}"></script>
+        <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+
        @yield('css')
 
         <!-- App css -->
+        <script src="{{asset('vendor/sweetalert/sweetalert.all.js')}}"></script>
         <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
@@ -845,6 +850,6 @@
 
         <!-- App js-->
         <script src="{{asset('assets/js/app.min.js')}}"></script>
-        
+        @include('sweetalert::alert')
     </body>
 </html>

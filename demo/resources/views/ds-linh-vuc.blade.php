@@ -74,7 +74,7 @@
 							<td>{{ $linhVuc->ten_linh_vuc }}</td>
 							<td>
 								<a href="{{route('linh-vuc.cap-nhat',['id'=>$linhVuc->id])}}" class="btn btn-success waves-effect waves-light"><i class=" mdi mdi-wrench"></i></a>
-								<a href="{{route('linh-vuc.xoa',['id'=>$linhVuc->id])}}" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
+								<a onclick="Delete('{{route('linh-vuc.xoa',['id'=>$linhVuc->id])}}')" href="#" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
 							</td>
 						</tr>
 						@endforeach
@@ -85,4 +85,6 @@
 		</div> <!-- end card -->
 	</div><!-- end col-->
 </div>
+@include('sweetalert::alert')
+@include('sweet_alert')
 @endsection

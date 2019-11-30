@@ -71,7 +71,7 @@
 							<td>{{ $linhVuc->ten_linh_vuc }}</td>
 							<td>
 								<a href="{{route('linh-vuc.restore',['id'=>$linhVuc->id])}}" class="btn btn-success waves-effect waves-light"><i class="mdi mdi-replay"></i></a>
-								<a href="{{route('linh-vuc.delete-trash',['id'=>$linhVuc->id])}}" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
+								<a onclick="Delete('{{route('linh-vuc.delete-trash',['id'=>$linhVuc->id])}}')" href="#" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
 							</td>
 						</tr>
 						@endforeach
@@ -82,4 +82,6 @@
 		</div> <!-- end card -->
 	</div><!-- end col-->
 </div>
+@include('sweetalert::alert')
+@include('sweet_alert')
 @endsection
