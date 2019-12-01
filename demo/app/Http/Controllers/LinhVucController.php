@@ -113,7 +113,7 @@ class LinhVucController extends Controller
            else
            {
               $linhVuc->delete();
-             Toast()->success('Xóa thành công !!'); 
+             Toast()->success('Xóa thành công, lĩnh vực được đưa vào thùng rác'); 
               return redirect()->route('linh-vuc.danh-sach');
           }       
       
@@ -153,6 +153,7 @@ class LinhVucController extends Controller
     {      
        $linhVuc=LinhVuc::onlyTrashed()->get()->find($id);
        $linhVuc->forceDelete();
+        Toast()->success('Xóa thành công!'); 
        if(count(LinhVuc::onlyTrashed()->get())==0)
          return redirect()->route('linh-vuc.danh-sach');
         else

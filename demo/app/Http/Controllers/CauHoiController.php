@@ -51,8 +51,8 @@ class CauHoiController extends Controller
         $cauHoi->phuong_an_d=$request->phuong_an_d;
         $cauHoi->dap_an=$request->dap_an;
         $cauHoi->save();
-        return  '<script>'."alert('Thêm lĩnh vực thành công')".'</script>';
-
+        toast()->success('Thêm câu hỏi thành công!'); 
+         return redirect()->route('cau-hoi.danh-sach');
     }
 
     /**
@@ -131,7 +131,11 @@ class CauHoiController extends Controller
 
     if ($validate->fails()) 
     return view('form-cau-hoi',compact('cauHoi'))->withErrors($validate);
-    else return  redirect()->route('cau-hoi.danh-sach');
+    else 
+        {
+            Toast()->success('Cập nhật thành công !!');
+            return  redirect()->route('cau-hoi.danh-sach');
+        }
      
     }
 
@@ -158,10 +162,14 @@ class CauHoiController extends Controller
 
     public function restore_cauhoi($id)
     {      
-        $dsCauHoi=CauHoi::all();
+        // $dsCauHoi=CauHoi::all();
         $cauHoi=CauHoi::onlyTrashed()->get()->find($id);
         $cauHoi->restore();
-        return redirect()->route('cau-hoi.danh-sach',compact('dsCauHoi'));
+        Toast()->success('Khôi phục thành công!'); 
+         if(count(CauHoi::onlyTrashed()->get())==0)
+        return redirect()->route('cau-hoi.danh-sach');
+    return redirect()->route('cau-hoi.dstrash');
+        // return redirect()->route('cau-hoi.dstrash',compact('dsCauHoi'));
     }
     /**
      * Remove the specified resource from storage.
@@ -173,6 +181,7 @@ class CauHoiController extends Controller
     {      
      $cauHoi=CauHoi::onlyTrashed()->get()->find($id);
      $cauHoi->forceDelete();
+      Toast()->success('Xóa thành công!'); 
      if(count(CauHoi::onlyTrashed()->get())==0)
         return redirect()->route('cau-hoi.danh-sach');
     return redirect()->route('cau-hoi.dstrash');

@@ -40,6 +40,7 @@ class GoiCreditController extends Controller
         $goiCredit->credit=$request->credit;
         $goiCredit->so_tien=$request->so_tien;
         $goiCredit->save();
+        toast()->success('Thêm thành công!'); 
         return redirect()->route('goi-credit.danh-sach');
     }
 
@@ -82,6 +83,7 @@ class GoiCreditController extends Controller
        $goicredit->credit=$request->credit;
        $goicredit->so_tien=$request->so_tien;
        $goicredit->save();
+       toast()->success('Cập nhật thành công!'); 
        return redirect()->route('goi-credit.danh-sach');
     }
 
@@ -95,6 +97,7 @@ class GoiCreditController extends Controller
     {
          $goiCredit=GoiCredit::find($id);
         $goiCredit->delete();
+        toast()->success('Xóa thành công!'); 
         return redirect()->route('goi-credit.danh-sach');      
     }
     public function get_trash()
@@ -107,6 +110,7 @@ class GoiCreditController extends Controller
     {      
         $goiCredit=GoiCredit::onlyTrashed()->get()->find($id);
         $goiCredit->restore();
+        toast()->success('Khôi phục thành công!'); 
          if(count(GoiCredit::onlyTrashed()->get())==0)
         return redirect()->route('goi-credit.danh-sach');
        return redirect()->route('goi-credit.dstrash');
@@ -122,6 +126,7 @@ class GoiCreditController extends Controller
     {      
        $goiCredit=GoiCredit::onlyTrashed()->get()->find($id);
        $goiCredit->forceDelete();
+       toast()->success('Xóa thành công!'); 
        if(count(GoiCredit::onlyTrashed()->get())==0)
         return redirect()->route('goi-credit.danh-sach');
        return redirect()->route('goi-credit.dstrash');

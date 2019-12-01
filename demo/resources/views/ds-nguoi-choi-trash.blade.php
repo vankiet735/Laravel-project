@@ -81,7 +81,7 @@
 							<td>{{$nguoiChoi->credit}}</td>
 							<td>
 								<a href="{{route('nguoi-choi.restore',['id'=>$nguoiChoi->id])}}" class="btn btn-success waves-effect waves-light"><i class="mdi mdi-replay"></i></a>
-								<a href="{{route('nguoi-choi.delete-trash',['id'=>$nguoiChoi->id])}}" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
+								<a onclick="Delete('{{route('nguoi-choi.delete-trash',['id'=>$nguoiChoi->id])}}')" href="#" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
 							</td>
 						</tr>
 						@endforeach
@@ -92,4 +92,6 @@
 		</div> <!-- end card -->
 	</div><!-- end col-->
 </div>
+@include('sweetalert::alert')
+@include('sweet_alert')
 @endsection

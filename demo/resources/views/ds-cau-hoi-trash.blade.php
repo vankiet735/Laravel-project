@@ -84,7 +84,8 @@ Danh sách câu hỏi đã bị xóa
                              <td>{{ $cauhoi->dap_an}}</td>   
 							<td>
 								<a href="{{route('cau-hoi.restore',['id'=>$cauhoi->id])}}" class="btn btn-success waves-effect waves-light"><i class="mdi mdi-replay"></i></a>
-								<a href="{{route('cau-hoi.delete-trash',['id'=>$cauhoi->id])}}" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
+								<a onclick="Delete('{{route('cau-hoi.delete-trash',['id'=>$cauhoi->id])}}')" 
+								href="#" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
 							</td>
 						</tr>
 						@endforeach
@@ -95,4 +96,6 @@ Danh sách câu hỏi đã bị xóa
 		</div> <!-- end card -->
 	</div><!-- end col-->
 </div>
+@include('sweetalert::alert')
+@include('sweet_alert')
 @endsection

@@ -74,7 +74,7 @@
 							<td>{{ $goiCredit->so_tien}}</td>
 							<td>
 								<a href="{{Route('goi-credit.restore',['id'=>$goiCredit->id])}}" class="btn btn-success waves-effect waves-light"><i class="mdi mdi-replay"></i></a>
-								<a href="{{Route('goi-credit.delete-trash',['id'=>$goiCredit->id])}}" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
+								<a onclick="Delete('{{Route('goi-credit.delete-trash',['id'=>$goiCredit->id])}}')" href="#" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
 								
 							</td>
 						</tr>
@@ -86,4 +86,6 @@
 		</div> <!-- end card -->
 	</div><!-- end col-->
 </div>
+@include('sweetalert::alert')
+@include('sweet_alert')
 @endsection

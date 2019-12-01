@@ -45,6 +45,7 @@ class NguoiChoiController extends Controller
        $nguoiChoi->diem_cao_nhat=$request->diem_cao_nhat;
        $nguoiChoi->credit=$request->credit;
        $nguoiChoi->save();
+       Toast()->success('Thêm thành công!'); 
        return redirect()->route('nguoi-choi.danh-sach');
    }
 
@@ -92,6 +93,7 @@ class NguoiChoiController extends Controller
     {
        $nguoiChoi=NguoiChoi::find($id);
        $nguoiChoi->delete();
+       Toast()->success('Xóa thành công!'); 
        return redirect()->route('nguoi-choi.danh-sach');    
    }
    public function get_trash()
@@ -104,7 +106,11 @@ public function restore_nguoichoi($id)
 {      
     $nguoiChoi=NguoiChoi::onlyTrashed()->get()->find($id);
     $nguoiChoi->restore();
-    return redirect()->route('nguoi-choi.danh-sach');
+    Toast()->success('Khôi phục thành công!'); 
+     if(count(NguoiChoi::onlyTrashed()->get())==0)
+        return redirect()->route('nguoi-choi.danh-sach');
+    else
+     return redirect()->route('nguoi-choi.dstrash');
 }
     /**
      * Remove the specified resource from storage.
@@ -117,6 +123,7 @@ public function restore_nguoichoi($id)
      
      $nguoiChoi=NguoiChoi::onlyTrashed()->get()->find($id);
      $nguoiChoi->forceDelete();
+     Toast()->success('Xóa thành công!'); 
      if(count(NguoiChoi::onlyTrashed()->get())==0)
         return redirect()->route('nguoi-choi.danh-sach');
     else

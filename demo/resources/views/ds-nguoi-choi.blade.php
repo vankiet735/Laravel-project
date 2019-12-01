@@ -43,51 +43,54 @@
 
 @section('main-content')
 
-  <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="header-title">Danh sách người chơi</h4>
-                                <a href="{{Route('nguoi-choi.them-moi')}}" type="button" class="btn btn-primary btn-rounded waves-effect waves-light">Thêm mới</a>
-                                <a href="{{Route('nguoi-choi.dstrash')}}" type="button" class="btn btn-primary btn-rounded waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
-                                
-                                <p></p>
-                               
-                                <table id="table-nguoi-choi" class="table dt-responsive " >
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Tên đăng nhập</th>
-                                            <th>Email</th>
-                                            <th>Hình đại diện</th>
-                                            <th>Điểm cao nhất</th>
-                                            <th>Credit</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                
-                               
-                                    <tbody >
-                                         @foreach($dsNguoiChoi as $nguoiChoi)
-                                        <tr >
-                                            <td>{{$nguoiChoi->id}}</td>
-                                            <td>{{$nguoiChoi->ten_dang_nhap}}</td>
-                                            <td>{{$nguoiChoi->email}}</td>
-                                            <td>{{$nguoiChoi->hinh_dai_dien}}</td>
-                                            <td>{{$nguoiChoi->diem_cao_nhat}}</td>
-                                            <td>{{$nguoiChoi->credit}}</td>
-                                            <td>
-                                                <a href="{{Route('nguoi-choi.xoa',['id'=>$nguoiChoi->id])}}" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
-                                            </td>   
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                   
-                                </table>
-                                
-                            </div> 
-                        </div> 
-                    </div>
-                </div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="header-title">Danh sách người chơi</h4>
+                <a href="{{Route('nguoi-choi.them-moi')}}" type="button" class="btn btn-primary btn-rounded waves-effect waves-light">Thêm mới</a>
+                <a  href="{{Route('nguoi-choi.dstrash')}}" type="button" class="btn btn-primary btn-rounded waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
+                
+                <p></p>
+                
+                <table id="table-nguoi-choi" class="table dt-responsive " >
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên đăng nhập</th>
+                            <th>Email</th>
+                            <th>Hình đại diện</th>
+                            <th>Điểm cao nhất</th>
+                            <th>Credit</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    
+                    
+                    <tbody >
+                       @foreach($dsNguoiChoi as $nguoiChoi)
+                       <tr >
+                        <td>{{$nguoiChoi->id}}</td>
+                        <td>{{$nguoiChoi->ten_dang_nhap}}</td>
+                        <td>{{$nguoiChoi->email}}</td>
+                        <td>{{$nguoiChoi->hinh_dai_dien}}</td>
+                        <td>{{$nguoiChoi->diem_cao_nhat}}</td>
+                        <td>{{$nguoiChoi->credit}}</td>
+                        <td>
+                            <a href="{{Route('nguoi-choi.restore',['id'=>$nguoiChoi->id])}}" class="btn btn-success waves-effect waves-light"><i class="mdi mdi-replay"></i></a>
+                            <a onclick="Delete('{{Route('nguoi-choi.xoa',['id'=>$nguoiChoi->id])}}')" href="#" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
+                        </td>   
+                    </tr>
+                    @endforeach
+                </tbody>
+                
+            </table>
+            
+        </div> 
+    </div> 
+</div>
+</div>
+@include('sweetalert::alert')
+@include('sweet_alert')
 @endsection
 
