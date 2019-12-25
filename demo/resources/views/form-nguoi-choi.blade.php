@@ -5,6 +5,13 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="mb-3 header-title">Thêm người chơi</h4>
+                 @if( $errors->any() )
+                <ul style="color:red">
+                    @foreach( $errors->all() as $error )
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                @endif
                 <form action="{{Route('nguoi-choi.xl-them-moi')}}" method="post">
                     @csrf
                     <div class="form-group">
@@ -14,6 +21,10 @@
                      <div class="form-group">
                         <label for="ten_dang_nhap">Mật khẩu</label>
                         <input type="text" class="form-control" id="mat_khau" name="mat_khau">
+                    </div>
+                     <div class="form-group">
+                        <label for="ten_dang_nhap">Xác nhận mật khẩu</label>
+                        <input type="text" class="form-control" id="xac_nhan_mat_khau" name="xac_nhan_mat_khau">
                     </div>
                      <div class="form-group">
                         <label for="email">Email</label>

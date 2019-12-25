@@ -98,7 +98,15 @@
 
 	<div class="col-4">
 		<div class="card">
+
 			<div class="card-body">
+				 @if( $errors->any() )
+                    <ul style="color:red">
+                        @foreach( $errors->all() as $error )
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                    @endif
 				<h4 class="mb-3 header-title">@if(isset($goicredit)) Cập nhật @else Thêm @endif Gói credit</h4>
 				@if(isset($goicredit))
 				<form action="{{Route('goi-credit.xl-cap-nhat',['id'=>$goiCredit->id])}}" method="post">

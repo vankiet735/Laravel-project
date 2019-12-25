@@ -100,7 +100,7 @@ class QuanTriVienController extends Controller
         }
         
         if(!Hash::check($thongtin['mat_khau'],$qtv->mat_khau)){
-             
+            
             return redirect()->route('dangnhap');
         }
         Auth::login($qtv);

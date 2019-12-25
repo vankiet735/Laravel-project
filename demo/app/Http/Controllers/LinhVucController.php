@@ -29,8 +29,8 @@ class LinhVucController extends Controller
      */
     public function create()
     {
-       return view('form-linh-vuc');
-   }
+     return view('form-linh-vuc');
+ }
 
     /**
      * Store a newly created resource in storage.
@@ -40,15 +40,15 @@ class LinhVucController extends Controller
      */
     public function store(LinhVucRequest $request)
     {
-     $linhVuc=new LinhVuc;
-     $linhVuc->ten_linh_vuc=$request->ten_linh_vuc;
-     $linhVuc->save();
+       $linhVuc=new LinhVuc;
+       $linhVuc->ten_linh_vuc=$request->ten_linh_vuc;
+       $linhVuc->save();
      // echo  '<script>'."alert('Thêm lĩnh vực thành công')".'</script>';
         // return redirect()->route('linh-vuc/them-moi');
-      toast()->success('Thêm lĩnh vực thành công !!'); 
-     return redirect()->route('linh-vuc.danh-sach');
+       toast()->success('Thêm lĩnh vực thành công !!'); 
+       return redirect()->route('linh-vuc.danh-sach');
 
- }
+   }
 
     /**
      * Display the specified resource.
@@ -83,12 +83,12 @@ class LinhVucController extends Controller
      */
     public function update(Request $request, $id)
     {
-       $linhVuc=LinhVuc::find($id);
-       $linhVuc->ten_linh_vuc=$request->ten_linh_vuc;
-       $linhVuc->save();
-       Toast()->success('Cập nhật thành công !!'); 
-       return redirect()->route('linh-vuc.danh-sach');
-   }
+     $linhVuc=LinhVuc::find($id);
+     $linhVuc->ten_linh_vuc=$request->ten_linh_vuc;
+     $linhVuc->save();
+     Toast()->success('Cập nhật thành công !!'); 
+     return redirect()->route('linh-vuc.danh-sach');
+ }
 
     /**
      * Remove the specified resource from storage.
@@ -98,24 +98,41 @@ class LinhVucController extends Controller
      */
     public function destroy($id)
     {
-        $a=0;
-        $cauHoi=CauHoi::all();
         $linhVuc=LinhVuc::find($id);
-        foreach ($cauHoi as $cauhoi) {
-            if(($cauhoi->linh_vuc_id)==($id))
-                $a++;
-        }
-       if($a!=0)
-            {
-               alert()->error('', 'Lĩnh vực còn tồn tại câu hỏi - Không thể xóa lĩnh vực này');
-               return redirect()->route('linh-vuc.danh-sach');
+        $kiemTra=CauHoi::where('linh_vuc_id',$id)->get();
+        if(isset($kiemTra)){
+            $cauHoi=CauHoi::where('linh_vuc_id',$id)->get()->count();
+            if($cauHoi>0){
+                alert()->error('', 'Lĩnh vực còn tồn tại '.$cauHoi. ' câu hỏi - Không thể xóa lĩnh vực này');
+                return redirect()->route('linh-vuc.danh-sach');
             }
-           else
-           {
+            else{
+               
               $linhVuc->delete();
-             Toast()->success('Xóa thành công, lĩnh vực được đưa vào thùng rác'); 
+              Toast()->success('Xóa thành công, lĩnh vực được đưa vào thùng rác'); 
               return redirect()->route('linh-vuc.danh-sach');
-          }       
+              
+          }
+      }
+      
+       //  $a=0;
+       //  $cauHoi=CauHoi::all();
+       //  $linhVuc=LinhVuc::find($id);
+       //  foreach ($cauHoi as $cauhoi) {
+       //      if(($cauhoi->linh_vuc_id)==($id))
+       //          $a++;
+       //  }
+       // if($a!=0)
+       //      {
+       //         alert()->error('', 'Lĩnh vực còn tồn tại câu hỏi - Không thể xóa lĩnh vực này');
+       //         return redirect()->route('linh-vuc.danh-sach');
+       //      }
+       //     else
+       //     {
+       //        $linhVuc->delete();
+       //       Toast()->success('Xóa thành công, lĩnh vực được đưa vào thùng rác'); 
+       //        return redirect()->route('linh-vuc.danh-sach');
+       //    }       
       
   }
      /**
@@ -151,12 +168,12 @@ class LinhVucController extends Controller
      */
     public function delete_trash($id)
     {      
-       $linhVuc=LinhVuc::onlyTrashed()->get()->find($id);
-       $linhVuc->forceDelete();
-        Toast()->success('Xóa thành công!'); 
-       if(count(LinhVuc::onlyTrashed()->get())==0)
-         return redirect()->route('linh-vuc.danh-sach');
-        else
-           return redirect()->route('linh-vuc.dstrash');
-   }
+     $linhVuc=LinhVuc::onlyTrashed()->get()->find($id);
+     $linhVuc->forceDelete();
+     Toast()->success('Xóa thành công!'); 
+     if(count(LinhVuc::onlyTrashed()->get())==0)
+       return redirect()->route('linh-vuc.danh-sach');
+   else
+     return redirect()->route('linh-vuc.dstrash');
+}
 }
