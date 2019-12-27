@@ -21,6 +21,11 @@ Route::get('linh-vuc-random','API\LinhVucController@Random_4_LinhVuc');
 
 Route::get('nguoi-choi','API\NguoiChoiController@layDanhSach');
 
+Route::post('dang-nhap','API\LoginController@dangNhap');
+
+Route::middleware(['assign.guard:api','jwt.auth'])->group(function(){
+	Route::get('lay-thong-tin','API\LoginController@layThongTin');
+});
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

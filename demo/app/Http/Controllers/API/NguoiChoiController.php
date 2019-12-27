@@ -12,9 +12,8 @@ class NguoiChoiController extends Controller
     	$limit = $request->query('limit', 25);
 
     	$listNguoiChoi = NguoiChoi::orderBy('diem_cao_nhat', 'desc')->skip(($page - 1) * $limit)->take($limit)->get();
-
     	return response()->json([
     		'total'	=> NguoiChoi::count(),
-    		'data'	=> $listNguoiChoi
+    		'data'	=> $listNguoiChoi,
     	]);
     }}
