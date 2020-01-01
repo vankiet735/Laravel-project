@@ -13,23 +13,28 @@ class LoginController extends Controller
 			'password'=>$request->mat_khau
 		];
     	#chứng thực
-		if(!$token=auth('api')->attempt($credentials)){
+		
+		if(!$token=auth('api')->attempt($credentials))
+		{
     		#sai ten dang nhap || mật khẩu
 			return response()->json([
-				'status'=>false,
+				'success'=>false,
 				'message'=>'Unauthorized.'
 			],401);
 		}
+		else
     		#chứng thực thành công
-		return response()->json([
-			'status'=>true,
-			'message'=>'Authorized.',
-			'token'=>$token,
+		{
+			return response()->json([
+				'success'=>true,
+				'message'=>'Authorized.',
+				'token'=>$token,
     			'type'=>'bearer',//có thể bỏ
     			'expires'=>auth('api')->factory()->getTTL()*60//có thể bỏ
     		],200);
-		
+		}
 	}
+
 	public function laythongtin(){
 		return auth('api')->user();
 	}

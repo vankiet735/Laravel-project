@@ -8,7 +8,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class NguoiChoi extends Authenticatable implements JWTSubject
 {
 	use SoftDeletes;
-     protected $table="nguoi_choi";
+     protected $table='nguoi_choi';
      protected $hidden=['mat_khau'];
      public function getPasswordAttribute(){
      	return $this->mat_khau;
