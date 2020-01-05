@@ -64,10 +64,10 @@ class GoiCreditController extends Controller
      */
     public function edit($id)
     {
-         $dsGoiCredit=GoiCredit::all();
-         $goicredit=GoiCredit::find($id);
-        return view('ds-goi-credit', compact('goicredit','dsGoiCredit'));
-    }
+       $dsGoiCredit=GoiCredit::all();
+       $goicredit=GoiCredit::find($id);
+       return view('ds-goi-credit', compact('goicredit','dsGoiCredit'));
+   }
 
     /**
      * Update the specified resource in storage.
@@ -76,17 +76,42 @@ class GoiCreditController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(GoiCreditRequest $request, $id)
+    public function update(Request $request, $id)
     {
-       
+     
         $goicredit=GoiCredit::find($id);
-       $goicredit->ten_goi=$request->ten_goi;
-       $goicredit->credit=$request->credit;
-       $goicredit->so_tien=$request->so_tien;
-       $goicredit->save();
-       toast()->success('Cập nhật thành công!'); 
-       return redirect()->route('goi-credit.danh-sach');
-    }
+        $goicredit->ten_goi=$request->ten_goi;
+        $goicredit->credit=$request->credit;
+        $goicredit->so_tien=$request->so_tien;
+        $goicredit->save();
+
+        $validate = Validator::make(
+           $request->all(),
+           [
+               'credit'=>'bail|required|numeric|min:1',
+               'so_tien'=>'bail|required|numeric|min:1'
+               
+           ],
+
+           [
+               'credit.required'=>'Số credit không được để trống',
+               'credit.min'=>'Gía trị gói Credit phải >0',
+               'so_tien.required'=>'Số tiền không được để trống',
+               'sotien.min'=>'Giá trị số tiền phải >0'
+           ],
+           
+       );
+
+        if ($validate->fails()) 
+            return view('form-cau-hoi',compact('cauHoi'))->withErrors($validate);
+        else 
+        {
+           toast()->success('Cập nhật thành công!'); 
+           return redirect()->route('goi-credit.danh-sach');
+       }
+       // toast()->success('Cập nhật thành công!'); 
+       // return redirect()->route('goi-credit.danh-sach');
+   }
 
     /**
      * Remove the specified resource from storage.
@@ -96,27 +121,27 @@ class GoiCreditController extends Controller
      */
     public function destroy($id)
     {
-         $goiCredit=GoiCredit::find($id);
-        $goiCredit->delete();
-        toast()->success('Xóa thành công!'); 
-        return redirect()->route('goi-credit.danh-sach');      
-    }
-    public function get_trash()
-    {      
-        $dsGoiCredit=GoiCredit::onlyTrashed()->get();
-        return view('ds-goi-credit-trash',compact('dsGoiCredit'));  
-    }
+       $goiCredit=GoiCredit::find($id);
+       $goiCredit->delete();
+       toast()->success('Xóa thành công!'); 
+       return redirect()->route('goi-credit.danh-sach');      
+   }
+   public function get_trash()
+   {      
+    $dsGoiCredit=GoiCredit::onlyTrashed()->get();
+    return view('ds-goi-credit-trash',compact('dsGoiCredit'));  
+}
 
-    public function restore_goi_credit($id)
-    {      
-        $goiCredit=GoiCredit::onlyTrashed()->get()->find($id);
-        $goiCredit->restore();
-        toast()->success('Khôi phục thành công!'); 
-         if(count(GoiCredit::onlyTrashed()->get())==0)
+public function restore_goi_credit($id)
+{      
+    $goiCredit=GoiCredit::onlyTrashed()->get()->find($id);
+    $goiCredit->restore();
+    toast()->success('Khôi phục thành công!'); 
+    if(count(GoiCredit::onlyTrashed()->get())==0)
         return redirect()->route('goi-credit.danh-sach');
-       return redirect()->route('goi-credit.dstrash');
-        
-    }
+    return redirect()->route('goi-credit.dstrash');
+    
+}
     /**
      * Remove the specified resource from storage.
      *
@@ -125,11 +150,11 @@ class GoiCreditController extends Controller
      */
     public function delete_trash($id)
     {      
-       $goiCredit=GoiCredit::onlyTrashed()->get()->find($id);
-       $goiCredit->forceDelete();
-       toast()->success('Xóa thành công!'); 
-       if(count(GoiCredit::onlyTrashed()->get())==0)
+     $goiCredit=GoiCredit::onlyTrashed()->get()->find($id);
+     $goiCredit->forceDelete();
+     toast()->success('Xóa thành công!'); 
+     if(count(GoiCredit::onlyTrashed()->get())==0)
         return redirect()->route('goi-credit.danh-sach');
-       return redirect()->route('goi-credit.dstrash');
-   }
+    return redirect()->route('goi-credit.dstrash');
+}
 }

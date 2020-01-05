@@ -95,12 +95,12 @@ class QuanTriVienController extends Controller
         $qtv=QuanTriVien::where('ten_dang_nhap',$thongtin['ten_dang_nhap'])->first();
         if($qtv==null)
           {
-            
+              alert()->error('', 'Tên đăng nhập không đúng');
              return redirect()->route('dangnhap');
         }
         
         if(!Hash::check($thongtin['mat_khau'],$qtv->mat_khau)){
-            
+            alert()->error('', 'Mật khẩu không đúng');
             return redirect()->route('dangnhap');
         }
         Auth::login($qtv);

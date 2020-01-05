@@ -20,17 +20,17 @@
                     </div>
                      <div class="form-group">
                         <label for="ten_dang_nhap">Mật khẩu</label>
-                        <input type="text" class="form-control" id="mat_khau" name="mat_khau">
+                        <input type="password" class="form-control" id="mat_khau" name="mat_khau">
                     </div>
                      <div class="form-group">
                         <label for="ten_dang_nhap">Xác nhận mật khẩu</label>
-                        <input type="text" class="form-control" id="xac_nhan_mat_khau" name="xac_nhan_mat_khau">
+                        <input type="password" class="form-control" id="xac_nhan_mat_khau" name="xac_nhan_mat_khau">
                     </div>
                      <div class="form-group">
                         <label for="email">Email</label>
                         <input type="text" class="form-control" id="email" name="email">
                     </div>
-                     <div class="form-group">
+                    <!--  <div class="form-group">
                         <label for="hinh_dai_dien">Ảnh đại diện</label>
                         <input type="text" class="form-control" id="hinh_dai_dien" name="hinh_dai_dien">
                     </div>
@@ -41,7 +41,7 @@
                      <div class="form-group">
                         <label for="credit">Credit</label>
                         <input type="text" class="form-control" id="credit" name="credit">
-                    </div>
+                    </div> -->
                     <button type="submit" class="btn btn-primary waves-effect waves-light">Thêm</button>
                 </form>
 

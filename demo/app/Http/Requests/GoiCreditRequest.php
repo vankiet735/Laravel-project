@@ -26,8 +26,8 @@ class GoiCreditRequest extends FormRequest
         return
         [
             'ten_goi'=>'bail|required|unique:goi_credit,ten_goi',
-            'credit'=>'bail|required',
-            'so_tien'=>'bail|required',
+            'credit'=>'bail|required|numeric|min:1',
+            'so_tien'=>'bail|required|numeric|min:1'
         ];
        
     }
@@ -37,7 +37,9 @@ class GoiCreditRequest extends FormRequest
             'ten_goi.required'=>"Tên gói không được để trống",
             'ten_goi.unique'=>'Gói credit đã tồn tại',
             'credit.required'=>'Số credit không được để trống',
-            'so_tien.required'=>'Số tiền không được để trống'
+            'credit.min'=>'Gía trị gói Credit phải >0',
+            'so_tien.required'=>'Số tiền không được để trống',
+           'sotien.min'=>'Giá trị số tiền phải >0'
         ];
     }
 }

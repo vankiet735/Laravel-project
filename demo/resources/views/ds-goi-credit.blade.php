@@ -120,11 +120,11 @@
 					</div>
 					<div class="form-group">
 						<label for="credit">Credit</label>
-						<input type="text" class="form-control" id="credit" name="credit" @if(isset($goicredit)) value="{{$goicredit->credit}}" @endif>
+						<input type="number" class="form-control" id="credit" name="credit" @if(isset($goicredit)) value="{{$goicredit->credit}}" @endif>
 					</div>
 					<div class="form-group">
 						<label for="so_tien">Số tiền</label>
-						<input type="text" class="form-control" id="so_tien" name="so_tien" @if(isset($goicredit)) value="{{$goicredit->so_tien}}" @endif>
+						<input type="number" class="form-control" id="so_tien" name="so_tien" @if(isset($goicredit)) value="{{$goicredit->so_tien}}" @endif>
 					</div>
 					<button type="submit" class="btn btn-primary waves-effect waves-light">@if(isset($goicredit)) Cập nhật @else Thêm @endif</button>
 				</form>

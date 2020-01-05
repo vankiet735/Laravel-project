@@ -19,7 +19,7 @@ class LoginController extends Controller
     		#sai ten dang nhap || mật khẩu
 			return response()->json([
 				'success'=>false,
-				'message'=>'Unauthorized.'
+				'message'=>'Sai tên đăng nhập hoặc mật khẩu'
 			],401);
 		}
 		else
@@ -35,7 +35,7 @@ class LoginController extends Controller
 		}
 	}
 
-	public function laythongtin(){
+	public function laythongtin(Request $request){
 		return auth('api')->user();
 	}
 

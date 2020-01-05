@@ -111,4 +111,8 @@
         <script src="{{asset('assets/js/app.min.js')}}"></script>
       
     </body>
+
 </html>
+</div>
+@include('sweetalert::alert')
+@include('sweet_alert')

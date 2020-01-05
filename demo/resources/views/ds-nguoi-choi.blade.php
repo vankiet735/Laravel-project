@@ -77,7 +77,7 @@
                         <td>{{$nguoiChoi->diem_cao_nhat}}</td>
                         <td>{{$nguoiChoi->credit}}</td>
                         <td>
-                            <a href="{{Route('nguoi-choi.restore',['id'=>$nguoiChoi->id])}}" class="btn btn-success waves-effect waves-light"><i class="mdi mdi-replay"></i></a>
+                           <!--  <a href="{{Route('nguoi-choi.restore',['id'=>$nguoiChoi->id])}}" class="btn btn-success waves-effect waves-light"><i class="mdi mdi-replay"></i></a> -->
                             <a onclick="Delete('{{Route('nguoi-choi.xoa',['id'=>$nguoiChoi->id])}}')" href="#" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-trash-can"></i></a>
                         </td>   
                     </tr>

@@ -15,10 +15,10 @@ class ChiTietLuotChoi extends Migration
     {
          Schema::create('chi_tiet_luot_choi', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('luot_choi_id');
-            $table->integer('cau_hoi_id');
-            $table->text('phuong_an');
+            $table->integer('nguoi_choi_id');
+            $table->integer('so_cau_dung');
             $table->integer('diem');
+            $table->timestamps();
         });
     }
 
